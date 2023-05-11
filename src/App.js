@@ -3,32 +3,28 @@ import logo from "./logo.svg";
 import "./App.css";
 
 const data = {
-  question1: {
-    option1: {
+  question1: 
+    [ {
       name: "q1",
       value: false,
       for: "Kpop",
       text:"Kpop"
-    },
-    option2: {
+    }, {
       name: "q1",
       value: false,
       for: "Indie",
       text:"Indie"
-    },
-    option3: {
+    }, {
       name: "q1",
       value: false,
       for: "Indian",
       text: "Indian"
-    },
-    option4: {
+    } , {
       name: "q1",
       value: true,
       for: "Whatever",
       text: "Whatever"
-    },
-  }
+    } ]
 }
 
 function Button(props) {
@@ -43,10 +39,9 @@ function Button(props) {
 function Question(){
   return(
     <>
-      <Button name={data.question1.option1.name} value={data.question1.option1.value} for={data.question1.option1.for} text={data.question1.option1.text}/>
-      <Button name={data.question1.option2.name} value={data.question1.option2.value} for={data.question1.option2.for} text={data.question1.option2.text}/>
-      <Button name={data.question1.option3.name} value={data.question1.option3.value} for={data.question1.option3.for} text={data.question1.option3.text}/>
-      <Button name={data.question1.option4.name} value={data.question1.option4.value} for={data.question1.option4.for} text={data.question1.option4.text}/>
+      {data.question1.map((el, index) => {
+        return <Button name={data.question1[index].name} value={data.question1[index].value} for={data.question1[index].for} text={data.question1[index].text} />
+      })}
     </>
   );
 }
@@ -69,12 +64,7 @@ function Quiz() {
         <p class="question-header">
           Question 1: <br /> What genre of music do I like?
         </p>
-
-        <Button name={data.question1.option1.name} value={data.question1.option1.value} for={data.question1.option1.for} text={data.question1.option1.text}/>
-        <Button name={data.question1.option2.name} value={data.question1.option2.value} for={data.question1.option2.for} text={data.question1.option2.text}/>
-        <Button name={data.question1.option3.name} value={data.question1.option3.value} for={data.question1.option3.for} text={data.question1.option3.text}/>
-        <Button name={data.question1.option4.name} value={data.question1.option4.value} for={data.question1.option4.for} text={data.question1.option4.text}/>
-      
+        <Question />
       </div>
 
 
