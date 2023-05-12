@@ -2,30 +2,29 @@ import React from 'react';
 import logo from "./logo.svg";
 import "./App.css";
 
-const data = {
-  question1: 
-    [ {
-      name: "q1",
-      value: false,
-      for: "Kpop",
-      text:"Kpop"
-    }, {
-      name: "q1",
-      value: false,
-      for: "Indie",
-      text:"Indie"
-    }, {
-      name: "q1",
-      value: false,
-      for: "Indian",
-      text: "Indian"
-    } , {
-      name: "q1",
-      value: true,
-      for: "Whatever",
-      text: "Whatever"
-    } ]
-}
+const data = [
+  [ {
+    name: "q1",
+    value: false,
+    for: "Kpop",
+    text:"Kpop"
+  }, {
+    name: "q1",
+    value: false,
+    for: "Indie",
+    text:"Indie"
+  }, {
+    name: "q1",
+    value: false,
+    for: "Indian",
+    text: "Indian"
+  } , {
+    name: "q1",
+    value: true,
+    for: "Whatever",
+    text: "Whatever"
+  } ],
+]
 
 function Button(props) {
   return (
@@ -36,11 +35,11 @@ function Button(props) {
   );
 }
 
-function Question(){
+function Question(props){
   return(
     <>
-      {data.question1.map((el, index) => {
-        return <Button name={data.question1[index].name} value={data.question1[index].value} for={data.question1[index].for} text={data.question1[index].text} />
+      {data[props.number].map((el, index) => {
+        return <Button name={data[props.number][index].name} value={data[props.number][index].value} for={data[props.number][index].for} text={data[props.number][index].text} />
       })}
     </>
   );
@@ -64,7 +63,7 @@ function Quiz() {
         <p class="question-header">
           Question 1: <br /> What genre of music do I like?
         </p>
-        <Question />
+        <Question number={0} />
       </div>
 
 
