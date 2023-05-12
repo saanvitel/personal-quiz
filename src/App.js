@@ -121,10 +121,16 @@ function Button(props) {
 
 function Question(props){
   console.log(props.numRight);
+  const classOfText = props.applyResult ? "right" : "wrong"
+
   return(
     <>
       {data[props.number].map((el, index) => {
-        return <Button onClick={()=> (props.setNumRight(data[props.number][index].value ? props.numRight + 1 : props.numRight + 0) )} name={data[props.number][index].name} value={data[props.number][index].value} for={data[props.number][index].for} text={data[props.number][index].text} />
+        return <Button className={classOfText} onClick={(event) => {
+          props.setNumRight(data[props.number][index].value ? props.numRight + 1 : props.numRight + 0)
+          props.handleChange(event);
+        }} 
+        name={data[props.number][index].name} value={data[props.number][index].value} for={data[props.number][index].for} text={data[props.number][index].text} />
       })}
     </>
   );
@@ -133,9 +139,22 @@ function Question(props){
 function Quiz() {
   const [numRight, setNumRight] = useState(0);
   const [showResultText, setShowResultText] = useState(false);
+  const [applyResult, setApplyResult] = useState(false);
   console.log(numRight); // works but if you reclick on right option it still adds one will fix this later
 
-  return (
+  const handleChange = event => {
+    console.log("LOAF HANDLECHANGE", event.target.value)
+    if (event.target.checked ) {
+      console.log("loaf checked", event.target.value)
+      if (event.target.value === true) {
+        setApplyResult(true);
+      } else {
+        setApplyResult(false);
+      }
+    } 
+  }
+
+    return (
     <>
       <div id="header">
         <h1>Quiz About Myself</h1>
@@ -152,7 +171,7 @@ function Quiz() {
         <p className="question-header">
           Question 1: <br /> What genre of music do I like?
         </p>
-        <Question number={0} setNumRight={setNumRight} numRight={numRight}/>
+        <Question number={0} setNumRight={setNumRight} numRight={numRight} applyResult={applyResult} handleChange={handleChange}/>
       </div>
 
 
@@ -161,7 +180,7 @@ function Quiz() {
         <p className="question-header">
           Question 2: <br /> What is my favorite cuisine?
         </p>
-        <Question number={1} setNumRight={setNumRight} numRight={numRight}/>
+        <Question number={1} setNumRight={setNumRight} numRight={numRight} applyResult={applyResult} handleChange={handleChange}/>
       </div>
 
       {/* <!-- question 3 --> */}
@@ -169,7 +188,7 @@ function Quiz() {
         <p className="question-header">
           Question 3: <br /> What animal am I really scared of?
         </p>
-        <Question number={2} setNumRight={setNumRight} numRight={numRight}/>
+        <Question number={2} setNumRight={setNumRight} numRight={numRight} applyResult={applyResult} handleChange={handleChange}/>
       </div>
 
       {/* <!-- question 4 -->  */}
@@ -178,7 +197,7 @@ function Quiz() {
           Question 4: <br /> What would I consume for the rest of my life if I
           had to?
         </p>
-        <Question number={3} setNumRight={setNumRight} numRight={numRight}/>
+        <Question number={3} setNumRight={setNumRight} numRight={numRight} applyResult={applyResult} handleChange={handleChange}/>
       </div>
 
       {/* <!-- question 5 --> */}
@@ -186,7 +205,7 @@ function Quiz() {
         <p className="question-header">
           Question 5: <br /> What was my dream occupation as a child?
         </p>
-        <Question number={4} setNumRight={setNumRight} numRight={numRight}/>
+        <Question number={4} setNumRight={setNumRight} numRight={numRight} applyResult={applyResult} handleChange={handleChange}/>
       </div>
 
       <div id="button-submit">
