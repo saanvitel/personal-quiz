@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -83,7 +83,7 @@ const data = [
     text:"Curry 🥘 "
   },{
     name: "q4",
-    value: false,
+    value: true,
     for: "potatoes",
     text:"Potatoes 🥔 "
   }],
@@ -99,12 +99,12 @@ const data = [
     text:"Interior Designer"
   },{
     name: "q5",
-    value: false,
+    value: true,
     for: "astronaut",
     text:"Astronaut"
   },{
     name: "q5",
-    value: true,
+    value: false,
     for: "doctor",
     text:"Doctor"
   }]
@@ -113,23 +113,28 @@ const data = [
 function Button(props) {
   return (
     <>
-    <input type="radio" name={props.name} value={props.value} />
+    <input type="radio" name={props.name} value={props.value} onClick={props.onClick} />
     <label for={props.for}>{props.text}</label> <br />
   </>
   );
 }
 
 function Question(props){
+  console.log(props.numRight);
   return(
     <>
       {data[props.number].map((el, index) => {
-        return <Button name={data[props.number][index].name} value={data[props.number][index].value} for={data[props.number][index].for} text={data[props.number][index].text} />
+        return <Button onClick={()=> (props.setNumRight(data[props.number][index].value ? props.numRight + 1 : props.numRight + 0) )} name={data[props.number][index].name} value={data[props.number][index].value} for={data[props.number][index].for} text={data[props.number][index].text} />
       })}
     </>
   );
 }
 
 function Quiz() {
+  const [numRight, setNumRight] = useState(0);
+  const [showResultText, setShowResultText] = useState(false);
+  console.log(numRight); // works but if you reclick on right option it still adds one will fix this later
+
   return (
     <>
       <div id="header">
@@ -143,54 +148,56 @@ function Quiz() {
       </div>
 
       {/* <!-- question 1 --> */}
-      <div class="question-container">
-        <p class="question-header">
+      <div className="question-container">
+        <p className="question-header">
           Question 1: <br /> What genre of music do I like?
         </p>
-        <Question number={0} />
+        <Question number={0} setNumRight={setNumRight} numRight={numRight}/>
       </div>
 
 
       {/* <!-- question 2 -->  */}
-      <div class="question-container">
-        <p class="question-header">
+      <div className="question-container">
+        <p className="question-header">
           Question 2: <br /> What is my favorite cuisine?
         </p>
-        <Question number={1} />
+        <Question number={1} setNumRight={setNumRight} numRight={numRight}/>
       </div>
 
       {/* <!-- question 3 --> */}
-      <div class="question-container">
-        <p class="question-header">
+      <div className="question-container">
+        <p className="question-header">
           Question 3: <br /> What animal am I really scared of?
         </p>
-        <Question number={2} />
+        <Question number={2} setNumRight={setNumRight} numRight={numRight}/>
       </div>
 
       {/* <!-- question 4 -->  */}
-      <div class="question-container">
-        <p class="question-header">
+      <div className="question-container">
+        <p className="question-header">
           Question 4: <br /> What would I consume for the rest of my life if I
           had to?
         </p>
-        <Question number={3} />
+        <Question number={3} setNumRight={setNumRight} numRight={numRight}/>
       </div>
 
       {/* <!-- question 5 --> */}
-      <div class="question-container">
-        <p class="question-header">
+      <div className="question-container">
+        <p className="question-header">
           Question 5: <br /> What was my dream occupation as a child?
         </p>
-        <Question number={4} />
+        <Question number={4} setNumRight={setNumRight} numRight={numRight}/>
       </div>
 
       <div id="button-submit">
-        <button type="submit" onclick="return getResults();">
+        {console.log(showResultText)}
+        <button type="submit" onClick={() => setShowResultText(true)}>
           Submit
         </button>
       </div>
 
-      <p id="footer"> Thank you for completing the quiz!</p>
+      <p id="footer">{showResultText ? `You got ${numRight} correct!` : "Thank you for playing this quiz!"}</p>
+      {console.log(showResultText)}
     </>
   );
 }
