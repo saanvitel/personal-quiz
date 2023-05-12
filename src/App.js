@@ -24,6 +24,90 @@ const data = [
     for: "Whatever",
     text: "Whatever"
   } ],
+  [{
+    name: "q2",
+    value: false,
+    for: "italian",
+    text:"Italian Food"
+  },{
+    name: "q2",
+    value: false,
+    for: "mexican",
+    text:"Mexican Food"
+  },{
+    name: "q2",
+    value: true,
+    for: "indian",
+    text:"Indian Food"
+  },{
+    name: "q2",
+    value: false,
+    for: "thai",
+    text:"Thai Food"
+  }],
+  [{
+    name: "q3",
+    value: false,
+    for: "crows",
+    text:"Crows 🦅"
+  },{
+    name: "q3",
+    value: false,
+    for: "snake",
+    text:"Snakes 🐍"
+  }, {
+    name: "q3",
+    value: true,
+    for: "snails",
+    text:"Snails 🐌"
+  }, {
+    name: "q3",
+    value: false,
+    for: "spiders",
+    text:"Spiders 🕷️"
+  }],
+  [{
+    name: "q4",
+    value: false,
+    for: "bubbletea",
+    text:"Bubble Tea 🧋"
+  },{
+    name: "q4",
+    value: false,
+    for: "lettuce",
+    text:"Lettuce 🥬"
+  },{
+    name: "q4",
+    value: false,
+    for: "curry",
+    text:"Curry 🥘 "
+  },{
+    name: "q4",
+    value: false,
+    for: "potatoes",
+    text:"Potatoes 🥔 "
+  }],
+  [{
+    name: "q5",
+    value: false,
+    for: "gamesdesigner",
+    text:"Computer games designer"
+  },{
+    name: "q5",
+    value: false,
+    for: "interiordes",
+    text:"Interior Designer"
+  },{
+    name: "q5",
+    value: false,
+    for: "astronaut",
+    text:"Astronaut"
+  },{
+    name: "q5",
+    value: true,
+    for: "doctor",
+    text:"Doctor"
+  }]
 ]
 
 function Button(props) {
@@ -72,14 +156,7 @@ function Quiz() {
         <p class="question-header">
           Question 2: <br /> What is my favorite cuisine?
         </p>
-        <input type="radio" name="q2" value="wrong" />
-        <label for="italian"> Italian food </label> <br />
-        <input type="radio" name="q2" value="wrong" />
-        <label for="mexican"> Mexican food </label> <br />
-        <input type="radio" name="q2" value="right" />
-        <label for="Indian-food"> Indian food </label> <br />
-        <input type="radio" name="q2" value="wrong" />
-        <label for="thai"> Thai food </label>
+        <Question number={1} />
       </div>
 
       {/* <!-- question 3 --> */}
@@ -87,14 +164,7 @@ function Quiz() {
         <p class="question-header">
           Question 3: <br /> What animal am I really scared of?
         </p>
-        <input type="radio" name="q3" value="wrong" />
-        <label for="crows"> Crows 🦅 </label> <br />
-        <input type="radio" name="q3" value="wrong" />
-        <label for="snake"> Snakes 🐍 </label> <br />
-        <input type="radio" name="q3" value="right" />
-        <label for="snails"> Snails 🐌 </label> <br />
-        <input type="radio" name="q3" value="wrong" />
-        <label for="spider"> Spiders 🕷️ </label>
+        <Question number={2} />
       </div>
 
       {/* <!-- question 4 -->  */}
@@ -103,14 +173,7 @@ function Quiz() {
           Question 4: <br /> What would I consume for the rest of my life if I
           had to?
         </p>
-        <input type="radio" name="q4" value="wrong" />
-        <label for="bubbletea"> Bubble Tea 🧋 </label> <br />
-        <input type="radio" name="q4" value="wrong" />
-        <label for="lettuce"> Lettuce 🥬 </label> <br />
-        <input type="radio" name="q4" value="wrong" />
-        <label for="curry"> Curry 🥘 </label> <br />
-        <input type="radio" name="q4" value="right" />
-        <label for="potato"> Potatoes 🥔 </label>
+        <Question number={3} />
       </div>
 
       {/* <!-- question 5 --> */}
@@ -118,14 +181,7 @@ function Quiz() {
         <p class="question-header">
           Question 5: <br /> What was my dream occupation as a child?
         </p>
-        <input type="radio" name="q5" value="wrong" />
-        <label for="gamesdesigner"> Computer games designer </label> <br />
-        <input type="radio" name="q5" value="wrong" />
-        <label for="interiordes"> Interior Designer </label> <br />
-        <input type="radio" name="q5" value="right" />
-        <label for="astronaut"> Astronaut </label> <br />
-        <input type="radio" name="q5" value="wrong" />
-        <label for="doctor"> Doctor </label>
+        <Question number={4} />
       </div>
 
       <div id="button-submit">
