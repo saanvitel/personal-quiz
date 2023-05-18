@@ -14,7 +14,7 @@ function Button(props) {
       />
       <label className={props.className} for={props.for}>
         {props.text}
-      </label>{" "}
+      </label>
       <br />
     </div>
   );
@@ -57,26 +57,26 @@ function Answer({
   );
 }
 
+//question that loads both formatting and headings and options all together
 function Question({ question, showResult, setSelectedAnswer, selectedAnswer }) {
   const { number, text, answers } = question;
   return (
     <>
       <div className="question-container">
-        <p className="question-header">
-          {text}
-          <Answer
-            number={number}
-            answers={answers}
-            showResult={showResult}
-            setSelectedAnswer={setSelectedAnswer}
-            selectedAnswer={selectedAnswer}
-          />
-        </p>
+        <p className="question-header">{text}</p>
+        <Answer
+          number={number}
+          answers={answers}
+          showResult={showResult}
+          setSelectedAnswer={setSelectedAnswer}
+          selectedAnswer={selectedAnswer}
+        />
       </div>
     </>
   );
 }
 
+//loads page
 function Quiz({ questions }) {
   const [showResultText, setShowResultText] = useState(false);
   const [showResult, setShowResult] = useState(false);
